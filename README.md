@@ -77,3 +77,30 @@ from sub
 where order_date = '2021-01-01'
 GROUP by customer_id
 ```
+Explain the code
+
+Answer the question
+
+4.What is the most purchased item on the menu and how many times was it purchased by all customers?
+```sql
+with sub AS
+(
+SELECT 
+customer_id,
+order_date,
+product_name,
+price
+from sales
+JOIN menu
+on sales.product_id = menu.product_id
+)
+SELECT 
+product_name,
+COUNT(product_name) as Qty_pur
+from sub
+GROUP by product_name
+ORDER by Qty_pur desc
+```
+Explain the code
+
+Answer the question
