@@ -45,6 +45,8 @@ Explain the code
 
 Answer the question
 
+________________________________________________________
+
 2.How many days has each customer visited the restaurant?
 ```sql
 SELECT customer_id,
@@ -56,6 +58,8 @@ group by customer_id
 Explain the code
 
 Answer the question 
+
+________________________________________________________
 
 3.What was the first item from the menu purchased by each customer?
 ```sql
@@ -81,6 +85,8 @@ Explain the code
 
 Answer the question
 
+________________________________________________________
+
 4.What is the most purchased item on the menu and how many times was it purchased by all customers?
 ```sql
 with sub AS
@@ -104,3 +110,5 @@ ORDER by Qty_pur desc
 Explain the code
 
 Answer the question
+
+________________________________________________________
