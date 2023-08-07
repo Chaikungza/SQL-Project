@@ -41,10 +41,18 @@ from sub
 GROUP by customer_id
 ORDER by total_amount DESC
 ```
-Explain the code
+<ins>Explain the code<ins>
 
-Answer the question
+1.Create "sub query" for join 2 table (sales & menu) because individule table have not enough information for calculate total amount of each customer while product_id are is primary key.
 
+2.Sum Total amout by customer id and sort by value.
+
+<ins>Answer the question<ins>
+| customer_id | total_amount |
+|---|---|
+| A | 76 |
+| B | 74 |
+| C | 36 |
 ________________________________________________________
 
 2.How many days has each customer visited the restaurant?
@@ -55,10 +63,16 @@ COUNT(DISTINCT order_date) as Qty_Day
 from sales
 group by customer_id
 ```
-Explain the code
+<ins>Explain the code<ins>
 
-Answer the question 
+1.Use "Distinct" for count the day (Not repeat day) of visited each customer from sales table.
 
+<ins>Answer the question<ins> 
+| customer_id | Qty_day |
+|---|---|
+| A | 4 |
+| B | 6 |
+| C | 2 |
 ________________________________________________________
 
 3.What was the first item from the menu purchased by each customer?
@@ -81,10 +95,18 @@ from sub
 where order_date = '2021-01-01'
 GROUP by customer_id
 ```
-Explain the code
+<ins>Explain the code<ins>
 
-Answer the question
+1.Use sub query from Problem no.1 .
 
+2.Use "Where" for filter first order date of each customer.
+
+<ins>Answer the question<ins>
+| customer_id | product_name | order_date |
+|---|---|---|
+| A | sushi | 2021-01-01 |
+| B | currey | 2021-01-01 |
+| C | ramen | 2021-01-01 |
 ________________________________________________________
 
 4.What is the most purchased item on the menu and how many times was it purchased by all customers?
@@ -107,8 +129,56 @@ from sub
 GROUP by product_name
 ORDER by Qty_pur desc
 ```
-Explain the code
+<ins>Explain the code<ins>
 
-Answer the question
+1.Use "count" for calculate quantity total times to buy by each product.
+
+2.Group data by product and sort by times of buy.
+
+<ins>Answer the question<ins>
+| product_name | Qty_pur |
+|---|---|
+| ramen | 8 |
+| currey | 4 |
+| sushi | 3 |
+
+5.Which item was the most popular for each customer?
+```sql
+with sub AS
+(
+SELECT 
+customer_id,
+order_date,
+product_name,
+price
+from sales
+JOIN menu
+on sales.product_id = menu.product_id
+)
+SELECT
+customer_id,
+product_name,
+COUNT(product_name) as qty_pur
+from sub
+GROUP by customer_id, product_name
+order by qty_pur desc
+```
+
+<ins>Explain the code<ins>
+
+1.Use "count" for calculate quantity total times to buy by each customer.
+
+2.Group data by product name and sort by times of buy.
+
+<ins>Answer the question<ins>
+| customer_id | product_name | qty_pur |
+|---|---|---|
+|A| ramen | 3 |
+|C| ramen | 3 |
+|A| curry | 2 |
+|B| curry | 2 |
+|B| ramen | 2 |
+|B| sushi | 2 |
+|A| sushi | 1 |
 
 ________________________________________________________
