@@ -1,7 +1,7 @@
 # SQL-Project - Case study 1
 This is SQL case study project for practice SQL skill.
 
-Reference case study from https://8weeksqlchallenge.com/case-study-5
+Reference case study from https://8weeksqlchallenge.com/case-study-1
 
 Case Study : Danny's Diner
 
