@@ -183,4 +183,40 @@ order by qty_pur desc
 |B| sushi | 2 |
 |A| sushi | 1 |
 
+6.Which item was purchased first by the customer after they became a member?
+```sql
+with sub AS
+(
+SELECT 
+sales.customer_id,
+order_date,
+join_date,
+product_name,
+ROW_NUMBER() OVER (PARTITION BY members.customer_id) AS rn  
+from sales
+JOIN menu
+on sales.product_id = menu.product_id
+LEFT join members
+on sales.customer_id = members.customer_id
+WHERE order_date>= join_date  
+)
+
+SELECT *
+from sub
+WHERE rn = 1
+```
+
+<ins>Explain the code<ins>
+
+1.Due to use Join date column from table "member", I use join function to 3 join table.
+
+2.Filter transaction that order date after join date and use "ROW_NUMBER" for 1st order.
+
+<ins>Answer the question<ins>
+
+| customer_id | order_date | join_date | product_name |
+|---|---|---|---|
+| A | 2021-01-07 | 2021-01-07 | curry |
+| B | 2021-01-11 | 2021-01-09 | sushi |
+
 ________________________________________________________
