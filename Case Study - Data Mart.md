@@ -25,3 +25,10 @@ COUNT() as n_row
 from weekly_sales
 '''
 
+<ins>Explain the code<ins>
+
+<ins>Answer the question<ins>
+| n_row |
+|---|
+| 17,117 |
+
