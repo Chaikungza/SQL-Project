@@ -83,23 +83,25 @@ SELECT
 customer_id,
 order_date,
 product_name,
-price
+price,
+ROW_NUMBER() OVER (PARTITION BY customer_id) AS rn
 from sales
 JOIN menu
 on sales.product_id = menu.product_id
 )
-SELECT customer_id,
-product_name,
-order_date
+SELECT  customer_id,
+order_date,
+product_name
 from sub
-where order_date = '2021-01-01'
-GROUP by customer_id
+WHERE rn = 1
 ```
 <ins>Explain the code<ins>
 
 1.Use sub query from Problem no.1 .
 
-2.Use "Where" for filter first order date of each customer.
+2.Use "ROW_NUMBER" for ranking order that buy by each customer because customer can buy more than 1 time per day.
+
+3.Refer from the problem,  filter of first item of each customer by "Where ROW_NUMBER = 1"
 
 <ins>Answer the question<ins>
 | customer_id | product_name | order_date |
