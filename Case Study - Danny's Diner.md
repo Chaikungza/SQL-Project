@@ -43,9 +43,9 @@ ORDER by total_amount DESC
 ```
 <ins>Explain the code<ins>
 
-1.Create "sub query" for join 2 table (sales & menu) because individule table have not enough information for calculate total amount of each customer while product_id are is primary key.
+- Create "sub query" for join 2 table (sales & menu) because individule table have not enough information for calculate total amount of each customer while product_id are is primary key.
 
-2.Sum Total amout by customer id and sort by value.
+- Sum Total amout by customer id and sort by value.
 
 <ins>Answer the question<ins>
 | customer_id | total_amount |
@@ -65,7 +65,7 @@ group by customer_id
 ```
 <ins>Explain the code<ins>
 
-1.Use "Distinct" for count the day (Not repeat day) of visited each customer from sales table.
+- Use "Distinct" for count the day (Not repeat day) of visited each customer from sales table.
 
 <ins>Answer the question<ins> 
 | customer_id | Qty_day |
@@ -97,11 +97,11 @@ WHERE rn = 1
 ```
 <ins>Explain the code<ins>
 
-1.Use sub query from Problem no.1 .
+- Use sub query from Problem no.1 .
 
-2.Use "ROW_NUMBER" for ranking order that buy by each customer because customer can buy more than 1 time per day.
+- Use "ROW_NUMBER" for ranking order that buy by each customer because customer can buy more than 1 time per day.
 
-3.Refer from the problem,  filter of first item of each customer by "Where ROW_NUMBER = 1"
+- Refer from the problem,  filter of first item of each customer by "Where ROW_NUMBER = 1"
 
 <ins>Answer the question<ins>
 | customer_id | product_name | order_date |
@@ -133,9 +133,9 @@ ORDER by Qty_pur desc
 ```
 <ins>Explain the code<ins>
 
-1.Use "count" for calculate quantity total times to buy by each product.
+- Use "count" for calculate quantity total times to buy by each product.
 
-2.Group data by product and sort by times of buy.
+- Group data by product and sort by times of buy.
 
 <ins>Answer the question<ins>
 | product_name | Qty_pur |
@@ -168,9 +168,9 @@ order by qty_pur desc
 
 <ins>Explain the code<ins>
 
-1.Use "count" for calculate quantity total times to buy by each customer.
+- Use "count" for calculate quantity total times to buy by each customer.
 
-2.Group data by product name and sort by times of buy.
+- Group data by product name and sort by times of buy.
 
 <ins>Answer the question<ins>
 | customer_id | product_name | qty_pur |
@@ -208,9 +208,9 @@ WHERE rn = 1
 
 <ins>Explain the code<ins>
 
-1.Due to use Join date column from table "member", I use join function to 3 join table.
+- Due to use Join date column from table "member", I use join function to 3 join table.
 
-2.Filter transaction that order date after join date and use "ROW_NUMBER" for 1st order.
+- Filter transaction that order date after join date and use "ROW_NUMBER" for 1st order.
 
 <ins>Answer the question<ins>
 
