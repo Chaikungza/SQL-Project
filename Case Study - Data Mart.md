@@ -164,3 +164,34 @@ where week_nos is NULL
  <ins>Answer the question<ins>
  
  28 week no. are missing (1-12, 37-52)
+
+4.How many total transactions were there for each year in the dataset?
+```sql
+SELECT years,
+SUM(transactions) as Sum_transaction
+FROM weekly_sales_cleansing
+GROUP by years
+order by years
+```
+ <ins>Answer the question<ins>
+| years | Sum_transaction |
+|---| ---|
+| 2018 | 346,406,460 |
+| 2019 | 365,639,285 |
+| 2020 | 375,813,651 |
+
+5.What is the total sales for each region for each month?
+
+```sql
+SELECT 
+region,
+years,
+months,
+SUM(transactions)
+FROM weekly_sales_cleansing
+GROUP by years, months, region
+ORDER by years, months
+```
+<ins>Answer the question<ins>
+![image](https://github.com/Chaikungza/SQL-Project/assets/121532457/fbc2d02d-9be6-4d72-9f5c-6bb89ee95fa0)
+
