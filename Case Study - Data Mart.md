@@ -99,6 +99,8 @@ CASE
 Round(sales/transactions,2) as avg_transaction
 ```
 
+# Data Exploration
+
 1.How many row for this table?
 
 ```sql
@@ -114,3 +116,51 @@ from weekly_sales
 |---|
 | 17,117 |
 
+2.What day of the week is used for each week_date value?
+
+```sql
+SELECT 
+EXTRACT(DOW FROM week_dates) AS day_of_week,
+COUNT(*)
+from weekly_sales_cleansing
+GROUP by day_of_week
+```
+
+| day_of_week | count |
+|---| ---|
+| 1 | 17,117 |
+
+<ins>Explain the code<ins>
+
+- Use "EXTRACT" for change format date to week of day format (returns the day of the week as an integer. (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+
+- Use "Group by for checking  quantity day of week in data set.
+
+<ins>Answer the question<ins>
+
+- Refer to previous question total transaction = 17,117 rows.
+
+- For the result is "1" so the day of the week for the data set = "Monday"
+
+3.What range of week numbers are missing from the dataset?
+
+```sql
+WITH All_Weeks AS (
+    SELECT generate_series(1, 52) AS week_number
+)
+      
+SELECT week_number,
+week_nos
+FROM All_weeks
+left join weekly_sales_cleansing
+on All_Weeks.week_number = weekly_sales_cleansing.week_nos
+where week_nos is NULL
+```
+<ins>Explain the code<ins>
+- Create new column Week number 1-52 week by sub query
+- Left join Week no from data set with Week no. colimn (1-52)
+- Week no. that missing in data set will return "Null"
+
+ <ins>Answer the question<ins>
+ 
+ 28 week no. are missing (1-12, 37-52)
