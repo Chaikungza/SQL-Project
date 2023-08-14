@@ -195,3 +195,28 @@ ORDER by years, months
 <ins>Answer the question<ins>
 ![image](https://github.com/Chaikungza/SQL-Project/assets/121532457/fbc2d02d-9be6-4d72-9f5c-6bb89ee95fa0)
 
+6.What is the total count of transactions for each platform?
+
+```sql
+SELECT 
+platform,
+years,
+COUNT(platform) as transactions,
+sum(COUNT(platform)) OVER (PARTITION by platform) as all_total_transaction
+
+FROM weekly_sales_cleansing
+GROUP by platform,years
+ORDER by years
+```
+<ins>Explain the code<ins>
+- Group by Platform as request and by year and add column total of count transaction for easy understanding.
+
+<ins>Answer the question<ins>
+| platform | years |transaction |all_total_transaction |
+|---| ---| ---| ---|
+| Retail| 2018 | 2,856 |8,568|
+| Shopofy| 2018 | 2,842 |8,549|
+| Retail| 2019 | 2,856 |8,568|
+| Shopofy| 2019 | 2,852 |8,549|
+| Retail| 2020 | 2,856 |8,568|
+| Shopofy| 2020 | 2,855 |8,549|
