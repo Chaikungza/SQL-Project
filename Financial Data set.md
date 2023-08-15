@@ -17,8 +17,10 @@ Raw Table
 
 
 After checking with raw data , it have to cleasing for reason as below.
-1.Column name have a space
+1.Column name have a space.
+
 2.It have '$' sign and '-' so should replace with Null or 0.
+
 3.Column date not set to date format, it will effect when create the dashboard.
 
 
